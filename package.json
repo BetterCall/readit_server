@@ -24,14 +24,17 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-decorators": "^7.8.3",
+    "babel-runtime": "^6.26.0",
     "copyfiles": "^2.2.0",
     "gql-merge": "^0.0.6",
     "nodemon": "^1.19.1"
   },
   "scripts": {
     "dev": "nodemon --exec babel-node src/server.js",
+    "prebuild": "yarn types",
     "build": "babel src -d build",
-    "postbuild": "cd src && copy ./api/**/**/*.graphql ../build/api/",
+    "postbuild": "cd src && copyfiles ./schema.graphql ../dist/api/schema",
+    "types": "gql-merge --out-file ./src/schema.graphql ./**/*.graphql ",
     "start": "node build/server.js"
   }
 }
