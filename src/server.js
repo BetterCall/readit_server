@@ -31,6 +31,7 @@ server.express.post("/api/post", async (req, res, next) => {
 
   const post = await Post.create({ postUrl, price }).save();
   console.log("post ", post);
+  res.send("ok");
 });
 
 console.log("connexion launch");
