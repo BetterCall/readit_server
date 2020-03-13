@@ -4,6 +4,7 @@ import { GraphQLServer } from "graphql-yoga";
 import logger from "morgan";
 import schema from "./schema";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 import { createConnection } from "typeorm";
 import connectionOptions from "./ormConfig";
@@ -20,6 +21,7 @@ const server = new GraphQLServer({
 server.express.use(logger("dev"));
 server.express.use(bodyParser.json()); // support json encoded bodies
 server.express.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+server.express.use(cors());
 
 server.express.post("/api/post", async (req, res, next) => {
   console.log(req.body);
