@@ -3,6 +3,6 @@
   "plugins": [
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     "@babel/plugin-proposal-class-properties",
-    "transform-async-to-generator"
+    "@babel/transform-async-to-generator"
   ]
 }
