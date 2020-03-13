@@ -1,0 +1,9 @@
+type PostModel {
+  id: ID!
+
+  postUrl: String
+  price: Float
+
+  createdAt: String!
+  updatedAt: String!
+}
