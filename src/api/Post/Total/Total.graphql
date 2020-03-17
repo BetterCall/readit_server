@@ -1,0 +1,8 @@
+type TotalResponse {
+  total: Int
+  amout: Float
+}
+
+type Query {
+  Total: TotalResponse
+}
