@@ -1,6 +1,6 @@
 type TotalResponse {
   total: Int
-  amout: Float
+  amount: Float
 }
 
 type Query {
