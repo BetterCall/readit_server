@@ -6,7 +6,9 @@ export default {
       try {
         const posts = await Post.find();
         const total = posts.length;
-        const amount = posts.map(s => s.price).reduce((a, b) => a + b, 0);
+        const amount = posts
+          .map(s => parseFloat(s.price))
+          .reduce((a, b) => a + b, 0);
 
         return {
           total,
