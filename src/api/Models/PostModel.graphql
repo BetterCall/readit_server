@@ -1,6 +1,7 @@
 type PostModel {
   id: ID!
 
+  ip: String
   postUrl: String
   price: Float
 
