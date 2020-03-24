@@ -25,13 +25,15 @@ server.express.use(cors());
 
 server.express.post("/api/post", async (req, res, next) => {
   console.log(req.body);
+  const ip = req.header("x-forwarded-for") || req.connection.remoteAddress;
+
   const { postUrl, price } = req.body;
   console.log("post url ", postUrl);
   if (!postUrl || !price) {
     res.send("error");
   }
 
-  const post = await Post.create({ postUrl, price }).save();
+  const post = await Post.create({ postUrl, price, ip }).save();
   console.log("post ", post);
   res.send("ok");
 });

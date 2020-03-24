@@ -18,6 +18,9 @@ export class Post extends BaseEntity {
   @Column({ type: "decimal", default: 0.4, scale: 2 })
   price;
 
+  @Column({ type: "text", default: "" })
+  ip;
+
   @CreateDateColumn()
   created_at;
 
