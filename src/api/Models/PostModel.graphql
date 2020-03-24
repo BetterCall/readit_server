@@ -6,5 +6,6 @@ type PostModel {
   price: Float
 
   created_at: String
+  createdAt: String
   updated_at: String
 }
