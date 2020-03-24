@@ -41,7 +41,7 @@ server.express.post("/api/post", async (req, res, next) => {
 console.log("connexion launch");
 createConnection(connectionOptions)
   .then(() =>
-    server.start({ port: PORT }, () =>
+    server.start({ port: PORT, playground: "/yo" }, () =>
       console.log(`Server running on  http://localhost:${PORT}`)
     )
   )
