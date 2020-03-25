@@ -32,13 +32,10 @@ server.express.post("/api/post", async (req, res, next) => {
   const ip = req.header("x-forwarded-for") || req.connection.remoteAddress;
 
   const { postUrl, price } = req.body;
-  console.log("post url ", postUrl);
   if (!postUrl || !price) {
     res.send("error");
   }
-
-  const post = await Post.create({ postUrl, price, ip }).save();
-  console.log("post ", post);
+  await Post.create({ postUrl, price, ip }).save();
   res.send("ok");
 });
 
