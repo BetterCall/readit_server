@@ -28,9 +28,7 @@ server.express.get("/", async (req, res, next) => {
 });
 
 server.express.post("/api/post", async (req, res, next) => {
-  console.log(req.body);
   const ip = req.header("x-forwarded-for") || req.connection.remoteAddress;
-
   const { postUrl, price } = req.body;
   if (!postUrl || !price) {
     res.send("error");
