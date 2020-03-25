@@ -10,6 +10,7 @@ import { createConnection } from "typeorm";
 import connectionOptions from "./ormConfig";
 
 import { Post } from "./entities/Post";
+import { Attempt } from "./entities/Attempt";
 
 const PORT = process.env.PORT || 4000;
 
@@ -33,7 +34,15 @@ server.express.post("/api/post", async (req, res, next) => {
   if (!postUrl || !price) {
     res.send("error");
   }
-  await Post.create({ postUrl, price, ip }).save();
+  //await Post.create({ postUrl, price, ip }).save();
+  const attempt = await Attempt.findOne({ ip });
+  if (attempt) {
+    attempt.count = attempt.count + 1;
+    attempt.save();
+  } else {
+    await Attempt.create({ ip, count: 1 }).save();
+  }
+
   res.send("merci :)");
 });
 
