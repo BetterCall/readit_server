@@ -1,0 +1,8 @@
+type Attempt {
+  ip: String
+  count: String
+}
+
+type Query {
+  CountAttempts: [Attempt]
+}
