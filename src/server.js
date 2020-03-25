@@ -11,7 +11,7 @@ import connectionOptions from "./ormConfig";
 
 import { Post } from "./entities/Post";
 
-const PORT = process.env.PORT || 4002;
+const PORT = process.env.PORT || 4000;
 
 const server = new GraphQLServer({
   schema,
@@ -34,7 +34,7 @@ server.express.post("/api/post", async (req, res, next) => {
     res.send("error");
   }
   await Post.create({ postUrl, price, ip }).save();
-  res.send("Alors ca marche blaireau ?");
+  res.send("merci :)");
 });
 
 console.log("connexion launch");
