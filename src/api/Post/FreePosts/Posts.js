@@ -11,6 +11,8 @@ export default {
             await post.remove();
           })
         );
+
+        return true;
       } catch (e) {
         console.log(e);
         return false;
