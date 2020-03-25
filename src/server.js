@@ -23,6 +23,10 @@ server.express.use(bodyParser.json()); // support json encoded bodies
 server.express.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 server.express.use(cors());
 
+server.express.get("/", async (req, res, next) => {
+  res.send("Bonjour");
+});
+
 server.express.post("/api/post", async (req, res, next) => {
   console.log(req.body);
   const ip = req.header("x-forwarded-for") || req.connection.remoteAddress;
