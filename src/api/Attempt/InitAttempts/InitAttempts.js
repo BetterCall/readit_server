@@ -15,10 +15,13 @@ export default {
 
         Promise.all(
           results.map(async result => {
-            await Attempt.create({
-              ip: result.ip,
-              count: parseInt(result.count)
-            }).save();
+            const attemp = await Attempt.findOne({ ip: result.ip });
+            if (!attemp) {
+              await Attempt.create({
+                ip: result.ip,
+                count: parseInt(result.count)
+              }).save();
+            }
           })
         );
 
