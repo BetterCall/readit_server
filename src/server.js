@@ -6,7 +6,7 @@ import schema from "./schema";
 import bodyParser from "body-parser";
 import cors from "cors";
 
-import { createConnection } from "typeorm";
+import { createConnection, getRepository } from "typeorm";
 import connectionOptions from "./ormConfig";
 
 import { Post } from "./entities/Post";
