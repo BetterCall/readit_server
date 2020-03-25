@@ -40,7 +40,29 @@ server.express.post("/api/post", async (req, res, next) => {
     attempt.count = attempt.count + 1;
     attempt.save();
   } else {
-    await Attempt.create({ ip, count: 1 }).save();
+    const results = await getRepository(Post)
+      .createQueryBuilder("post")
+      .select("ip")
+      .addSelect("COUNT(*) AS count")
+      .groupBy("post.ip")
+      .getRawMany();
+
+    const found = false;
+    Promise.all(
+      results.map(async result => {
+        if (result.ip == ip) {
+          await Attempt.create({ ip, count: parseInt(result.count) }).save();
+          found = true;
+        }
+      })
+    );
+
+    if (!found) {
+      await Attempt.create({
+        ip: result.ip,
+        count: 1
+      }).save();
+    }
   }
 
   res.send("merci :)");
