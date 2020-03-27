@@ -63,7 +63,7 @@ server.express.post("/api/post", async (req, res, next) => {
 
       if (!found) {
         await Attempt.create({
-          ip: result.ip,
+          ip,
           count: 1
         }).save();
       }
