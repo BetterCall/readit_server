@@ -51,6 +51,9 @@ server.express.post("/api/post", async (req, res, next) => {
       const found = false;
       Promise.all(
         results.map(async result => {
+          if (!result) {
+            return;
+          }
           if (result.ip == ip) {
             await Attempt.create({ ip, count: parseInt(result.count) }).save();
             found = true;
